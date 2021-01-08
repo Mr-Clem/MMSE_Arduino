@@ -1,6 +1,6 @@
 import socket
 import os
-from thread import *
+from _thread import *
 import time
 
 ServerSideSocket = socket.socket()

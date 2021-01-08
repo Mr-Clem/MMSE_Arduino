@@ -1,9 +1,12 @@
 import socket
 import time
+import serial as sr
 
 clientSocket = socket.socket()
 
-ip = raw_input("Entrez l'adresse du server: ")
+port_serie = sr.Serial(port = "/dev/ttyACM0", baudrate = "9600")
+ip = input("Entrez l'adresse du server: ")
+
 
 host = ip
 port = 2004
@@ -16,7 +19,12 @@ except socket.error as e:
 
 res = clientSocket.recv(1024)
 while True:
-    clientSocket.send(str.encode('hello'))
+    try:
+        tab = port_serie.readline().split()
+        ligne = tab[0].decode("utf-8")
+    except:
+        ligne = ""
+    clientSocket.send(str.encode(ligne))
     try:
         res = clientSocket.recv(1024)
         print(res.decode('utf-8'))
