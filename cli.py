@@ -2,7 +2,10 @@ import socket
 import time
 
 clientSocket = socket.socket()
-host = '192.168.1.64'
+
+ip = raw_input("Entrez l'adresse du server: ")
+
+host = ip
 port = 2004
 
 print('Waiting for connection response')

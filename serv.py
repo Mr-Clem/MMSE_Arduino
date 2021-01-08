@@ -1,10 +1,10 @@
 import socket
 import os
-from _thread import *
+from thread import *
 import time
 
 ServerSideSocket = socket.socket()
-host = '192.168.1.64'
+host = socket.gethostbyname(socket.gethostname())
 port = 2004
 ThreadCount = 0
 try:
