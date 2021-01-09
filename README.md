@@ -2,7 +2,7 @@
 
 Project in collaboration with Luka Moraiz, Florian Gardes and Alex Portes Narrieu.
 
-How to use:
+*How to use:*
 * Your arduino must be plugged to your client PC.
 * Run serv.py using python 3 as below:
   ```bash
