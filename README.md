@@ -17,4 +17,4 @@ Project in collaboration with Luka Moraiz, Florian Gardes and Alex Portes Narrie
 
 Depending of the number of sensor that send "DANGER" to the server, the message on each
 client LCD display will be different. 
-You can run as many clients as you want.
+<br>You can run as many clients as you want.
