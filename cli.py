@@ -6,7 +6,7 @@ clientSocket = socket.socket()
 
 port_serie = sr.Serial(port = "/dev/ttyACM0", baudrate = "9600")
 ip = input("Entrez l'adresse du server: ")
-
+sensorName = input("Entrez lne nom de votre capteur: ")
 
 host = ip
 port = 2004
@@ -18,6 +18,9 @@ except socket.error as e:
     print(str(e))
 
 res = clientSocket.recv(1024)
+
+clientSocket.send(str.encode(sensorName))
+
 while True:
     try:
         tab = port_serie.readline().split()
