@@ -11,9 +11,9 @@ How to use:
 * Run clients using python 3 as below:
   ```bash
   $python3 client.py
-  ```
   >Entrez l'adresse du server : <server address>
   >Entrez le nom de votre capteur : <sensor name>
+  ```
 
 Depending of the number of sensor that send "DANGER" to the server, the message on each
 client LCD display will be different. You can run as many clients as you want.
