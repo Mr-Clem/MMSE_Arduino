@@ -1,6 +1,6 @@
 # MMSE_Arduino
 
-Project in collaboration with Luka Moraiz, Florian Gardes and Alex Portes Narrieu.
+Project in collaboration with **Luka Moraiz**, **Florian Gardes** and **Alex Portes Narrieu**.
 
 **How to use:**
 * Your arduino must be plugged to your client PC.
