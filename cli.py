@@ -4,7 +4,7 @@ import serial as sr
 
 clientSocket = socket.socket()
 
-port_serie = sr.Serial(port = "/dev/ttyACM0", baudrate = "9600")
+port_serie = sr.Serial(port = "/dev/ttyACM3", baudrate = "9600")
 ip = input("Entrez l'adresse du server: ")
 sensorName = input("Entrez lne nom de votre capteur: ")
 
@@ -30,7 +30,11 @@ while True:
     clientSocket.send(str.encode(ligne))
     try:
         res = clientSocket.recv(1024)
-        print(res.decode('utf-8'))
+        msg = res.decode('utf-8')
+        print(msg)
+        msg = msg + "\n"
+        port_serie.write(msg.encode())
+
     except:
         print("nothing from serv")
     time.sleep(1);

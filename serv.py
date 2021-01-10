@@ -19,6 +19,13 @@ except socket.error as e:
 print('Socket is listening..')
 ServerSideSocket.listen(5)
 
+def sensorsInAlert():
+    global dangertab
+    res = 0
+    for i in dangertab:
+        res+=i
+    return res
+
 def multi_threaded_client(connection, number):
     connection.send(str.encode('Server is working:'))
     data = connection.recv(2048)
@@ -29,13 +36,14 @@ def multi_threaded_client(connection, number):
     dangertab = np.append(dangertab, False)
     while True:
         data = connection.recv(2048)
-        if(data.decode('utf-8') == "DANGER"):
-            sensors[number-1] = True
+        if(data.decode('utf-8') == "meh"):
+            dangertab[number-1] = True
         else:
-            sensors[number-1] = False
-        response = 'Client message: ' + data.decode('utf-8')
+            dangertab[number-1] = False
+        sensoralert = str(sensorsInAlert())
+        response = 'Client message: ' + data.decode('utf-8') + 'Sensors in alert: ' + sensoralert
         print(response)
-        connection.sendall(str.encode('received'))
+        connection.sendall(str.encode(sensoralert))
         time.sleep(1);
     connection.close()
 
