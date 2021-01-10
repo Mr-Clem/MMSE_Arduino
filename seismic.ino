@@ -1,19 +1,45 @@
+#include <LiquidCrystal.h>
+LiquidCrystal ecran(12,11,5,4,3,2);
 int analogPin = 0;
 int analogValue = 0;
-int ledPin = 7;
+String entry ="";
 
 void setup() {
   Serial.begin(9600);
-  pinMode(ledPin, OUTPUT);
+  ecran.begin(16, 2);
+  ecran.setCursor(0, 0);
+  ecran.print("     Hello      ");
+  ecran.setCursor(0, 1);
+  ecran.print("       :)       ");
 }
 
 void loop() {
   analogValue = analogRead(analogPin);
-  Serial.println(analogValue);
-  if(analogValue > 300){ // Lorsque la photorésistance sera suffisamment éclairé, la LED s'éteindra
-    digitalWrite(ledPin, LOW);
+  entry = Serial.readStringUntil('\n');
+  if(entry == "0.0"){
+    ecran.setCursor(0, 0);
+    ecran.print("       SAFE    ");
   }
-  else{
-    digitalWrite(ledPin, HIGH);  
+  if(entry == "1.0"){
+    ecran.setCursor(0, 0);
+    ecran.print("    Prudence    ");
   }
+  if(entry == "2.0"){
+    ecran.setCursor(0, 0);
+    ecran.print("   Attention    ");
+  }
+  if(entry == "3.0"){
+    ecran.setCursor(0, 0);
+    ecran.print("      DANGER    ");
+  }
+  if(entry == "4.0"){
+    ecran.setCursor(0, 0);
+    ecran.print("      RIP       ");
+  }
+  if(analogValue>300){
+    Serial.println("warning");
+  }else{
+    Serial.println("ok");
+  }
+  delay(1000);
 }
