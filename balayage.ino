@@ -18,10 +18,10 @@ void setup() {
   lcd.print("     Hello      ");
   lcd.setCursor(0, 1);
   lcd.print("       :)       ");
-  
+
   monservo.attach(7);
   monservo.write(0);
-  
+
   pinMode(TRIGGER, OUTPUT);
   digitalWrite(TRIGGER, LOW);
   pinMode(ECHO, INPUT);
@@ -29,12 +29,12 @@ void setup() {
 
 
 void loop() {
-  
+
   //Serial input checking
   entry = Serial.readStringUntil('\n');
   if(entry == "0.0"){
     lcd.setCursor(0, 0);
-    lcd.print("SAFE");
+    lcd.print("      SAFE      ");
   }
   if(entry == "1.0"){
     lcd.setCursor(0, 0);
@@ -52,28 +52,28 @@ void loop() {
     lcd.setCursor(0, 0);
     lcd.print("      RIP       ");
   }
-  
+
   angle += rot;
   monservo.write(angle);
   digitalWrite(TRIGGER, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER, LOW);
-  
+
   long measure = pulseIn(ECHO, HIGH);
 
   float distance = measure / 2.0 * SOUND_SPEED;
-  
+
   if(angle == 180){
     rot = -1;
   }
   if (angle == 0){
     rot = 1;
   }
-  
+
   //Serial output
   if(distance<100){
     Serial.println("warning");
   }else{
     Serial.println("ok");
-  }  
+  }
 }
