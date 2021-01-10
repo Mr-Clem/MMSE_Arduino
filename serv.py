@@ -36,7 +36,7 @@ def multi_threaded_client(connection, number):
     dangertab = np.append(dangertab, False)
     while True:
         data = connection.recv(2048)
-        if(data.decode('utf-8') == "meh"):
+        if(data.decode('utf-8') == "warning"):
             dangertab[number-1] = True
         else:
             dangertab[number-1] = False
