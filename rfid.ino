@@ -74,15 +74,14 @@ void loop() {
 
    if (goodTag == true)
    {
-       Serial.println("Good Tag");
-       lcd.clear();
-       lcd.setCursor(0,0);
-       lcd.print("Good Tag");
+       Serial.println("warning");
        goodTag = false;
 
    }
    else {
-    Serial.println("No Problem");
+      Serial.println("ok");
    }
+   delay(1000);
+
    
 }
