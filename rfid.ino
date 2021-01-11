@@ -11,6 +11,8 @@ MFRC522 rfid(SS_PIN, RST_PIN);
 // Tableau contentent l'ID
 byte nuidPICC[4];
 bool goodTag = false;
+String entry ="";
+
 LiquidCrystal lcd(7,6,5,4,3,2);
 void setup() {
   Serial.begin(9600);
@@ -21,9 +23,31 @@ void setup() {
   
   // Init MFRC522 
   rfid.PCD_Init(); 
+
 }
 
 void loop() {
+  entry = Serial.readStringUntil('\n');
+  if(entry == "0.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("      SAFE      ");
+  }
+  if(entry == "1.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("    Prudence    ");
+  }
+  if(entry == "2.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("   Attention    ");
+  }
+  if(entry == "3.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("      DANGER    ");
+  }
+  if(entry == "4.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("      RIP       ");
+  }
   // Initialisé la boucle si aucun badge n'est présent 
   if ( !rfid.PICC_IsNewCardPresent())
     return;
@@ -57,4 +81,8 @@ void loop() {
        goodTag = false;
 
    }
+   else {
+    Serial.println("No Problem");
+   }
+   
 }
