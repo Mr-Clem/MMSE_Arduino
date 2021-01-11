@@ -28,15 +28,10 @@ while True:
     except:
         ligne = ""
     clientSocket.send(str.encode(ligne))
-    try:
-        res = clientSocket.recv(1024)
-        msg = res.decode('utf-8')
-        print(msg)
-        msg = msg + "\n"
-        port_serie.write(msg.encode())
-
-    except:
-        print("Nothing from serv")
-    #time.sleep(1);
+    res = clientSocket.recv(1024)
+    msg = res.decode('utf-8')
+    print(msg)
+    msg = msg + "\n"
+    port_serie.write(msg.encode())
 
 clientSocket.close()
