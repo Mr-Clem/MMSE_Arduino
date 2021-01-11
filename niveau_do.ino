@@ -1,4 +1,8 @@
-int detect = 10;
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12,11,5,4,3,2);
+int detect = 13;
+String entry ="";
+
 
 int switchstate;
 void setup() {
@@ -8,6 +12,13 @@ void setup() {
   pinMode(A2,OUTPUT);
   pinMode(A3,OUTPUT);
   pinMode(detect, INPUT_PULLUP);
+
+  lcd.begin(16, 2);
+  lcd.setCursor(0, 0);
+  lcd.print("     Hello      ");
+  lcd.setCursor(0, 1);
+  lcd.print("       :)       ");
+
 }
 
 void displayColor(int r, int g, int b){
@@ -18,6 +29,27 @@ void displayColor(int r, int g, int b){
 
 
 void loop() {
+  entry = Serial.readStringUntil('\n');
+  if(entry == "0.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("      SAFE      ");
+  }
+  if(entry == "1.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("    Prudence    ");
+  }
+  if(entry == "2.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("   Attention    ");
+  }
+  if(entry == "3.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("      DANGER    ");
+  }
+  if(entry == "4.0"){
+    lcd.setCursor(0, 0);
+    lcd.print("      RIP       ");
+  }
   switchstate = digitalRead(detect);
   if(switchstate == HIGH ){
     displayColor(255,0,0);
