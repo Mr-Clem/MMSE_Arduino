@@ -76,4 +76,6 @@ void loop() {
   }else{
     Serial.println("ok");
   }
+
+  delay(1000);
 }
