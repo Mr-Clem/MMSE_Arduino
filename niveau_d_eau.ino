@@ -33,29 +33,41 @@ void loop() {
   if(entry == "0.0"){
     lcd.setCursor(0, 0);
     lcd.print("      SAFE      ");
+    lcd.setCursor(0, 1);
+    lcd.print("       :)       ");
   }
   if(entry == "1.0"){
     lcd.setCursor(0, 0);
     lcd.print("    Prudence    ");
+    lcd.setCursor(0, 1);
+    lcd.print("       :x       ");
   }
   if(entry == "2.0"){
     lcd.setCursor(0, 0);
     lcd.print("   Attention    ");
+    lcd.setCursor(0, 1);
+    lcd.print("       :/       ");
   }
   if(entry == "3.0"){
     lcd.setCursor(0, 0);
     lcd.print("      DANGER    ");
+    lcd.setCursor(0, 1);
+    lcd.print("       :$       ");
   }
   if(entry == "4.0"){
     lcd.setCursor(0, 0);
     lcd.print("      RIP       ");
+    lcd.setCursor(0, 1);
+    lcd.print("       :(       ");
   }
   switchstate = digitalRead(detect);
   if(switchstate == HIGH ){
     displayColor(255,0,0);
+    Serial.println("ok");
   }
   else{
     displayColor(0,0,255);
+    Serial.println("warning");
   }
- 
+ delay(1000);
 }
