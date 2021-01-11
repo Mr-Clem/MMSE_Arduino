@@ -18,7 +18,7 @@ void loop() {
   entry = Serial.readStringUntil('\n');
   if(entry == "0.0"){
     ecran.setCursor(0, 0);
-    ecran.print("       SAFE    ");
+    ecran.print("      SAFE    ");
   }
   if(entry == "1.0"){
     ecran.setCursor(0, 0);
@@ -36,10 +36,10 @@ void loop() {
     ecran.setCursor(0, 0);
     ecran.print("      RIP       ");
   }
-  if(analogValue>300){
-    Serial.println("warning");
-  }else{
+  if(analogValue>400){
     Serial.println("ok");
+  }else{
+    Serial.println("warning");
   }
   delay(1000);
 }
