@@ -4,7 +4,7 @@ import serial as sr
 
 clientSocket = socket.socket()
 
-port_serie = sr.Serial(port = "/dev/ttyACM3", baudrate = "9600")
+port_serie = sr.Serial(port = "/dev/ttyACM0", baudrate = "9600")
 ip = input("Server IP: ")
 sensorName = input("Sensor name: ")
 
@@ -37,6 +37,6 @@ while True:
 
     except:
         print("Nothing from serv")
-    time.sleep(1);
+    #time.sleep(1);
 
 clientSocket.close()

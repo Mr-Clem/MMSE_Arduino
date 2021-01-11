@@ -41,10 +41,9 @@ def multi_threaded_client(connection, number):
         else:
             dangertab[number-1] = False
         sensoralert = str(sensorsInAlert())
-        response = 'Client message: ' + data.decode('utf-8') + 'Sensors in alert: ' + sensoralert
+        response = 'message from ' + sensors[number-1] + ": "+ data.decode('utf-8') + ' Sensors in alert: ' + sensoralert
         print(response)
         connection.sendall(str.encode(sensoralert))
-        time.sleep(1);
     connection.close()
 
 while True:
